@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": []
+  },
+  "packageFolders": {
+    "C:\\Users\\Jonthe\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+      "projectName": "FSAI",
+      "projectPath": "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+      "packagesPath": "C:\\Users\\Jonthe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Jonthe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net472": {}
+    }
+  }
+}
