@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "X8sF+itAB6lLFPh6qglrLF2OBzThNBa/Q4R4gj7JzdsWoNgylQ/CRJXQEl2JTljJrq9XA3hF0TK/gzaWNnP6Jg==",
+  "success": true,
+  "projectFilePath": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Carl\\.nuget\\packages\\fsharp.core\\5.0.2\\fsharp.core.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

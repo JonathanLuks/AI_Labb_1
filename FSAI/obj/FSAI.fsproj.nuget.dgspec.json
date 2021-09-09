@@ -1,0 +1,49 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj": {}
+  },
+  "projects": {
+    "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+        "projectName": "FSAI",
+        "projectPath": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+        "packagesPath": "C:\\Users\\Carl\\.nuget\\packages\\",
+        "outputPath": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Carl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "FSharp.Core": {
+              "target": "Package",
+              "version": "[5.0.2, )",
+              "generatePathProperty": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

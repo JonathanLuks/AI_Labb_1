@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Jonthe\source\repos\reversi-master\AI_Labb_1\Reversi\obj\Debug\
+D:\JU-DIS\NFK\AI_Labb_1\Reversi\obj\Debug\
 Reversi
 none
 false
 DEBUG;TRACE
-C:\Users\Jonthe\source\repos\reversi-master\AI_Labb_1\Reversi\App.xaml
+D:\JU-DIS\NFK\AI_Labb_1\Reversi\App.xaml
 5698234943
 
-11-1032235509
-151694877598
+7-593120361
+16-340589831
 GameBoardPage.xaml;HelpPage.xaml;HighscoresPage.xaml;MainWindow.xaml;StartPage.xaml;
 
-True
+False
 
