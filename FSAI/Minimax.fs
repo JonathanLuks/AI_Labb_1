@@ -22,7 +22,7 @@ module Minimax =
         else
             y
 
-    let miniMaxAlphaBeta board depth a b tile isMaxPlayer = 
+    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer = 
         //if depth = 0 then
             //eval(board)
 
@@ -36,12 +36,29 @@ module Minimax =
             else
                 maxValue
 
-        // todo: Get list of Valid Moves 
+        // todo: Get list of Valid Moves
+        // if (validMoves.Count > 0)
+
+        let childBoard:byte[,] = board
+        // todo: MakeMove, OtherTile
+        let newDepth = depth - 1
+        let newIsMaxPlayer = not isMaxPlayer
+        let nodeScore = miniMaxAlphaBeta childBoard newDepth a b tile newIsMaxPlayer
+        
+
+        let newBestScore =
+            if isMaxPlayer then
+                let newA = Max bestScore a
+                Max bestScore nodeScore
+            else
+                let newB = Min bestScore b
+                Min bestScore nodeScore
+
+        
+        // else return miniMaxAlphaBeta board depth a b OtherTile !isMaxPlayer
 
 
-
-        let move : (int * int) = (0, 0)
-        move
+        bestScore
 
 
     
