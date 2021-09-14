@@ -1,20 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj": {}
+    "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\FSAI.fsproj": {}
   },
   "projects": {
-    "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj": {
+    "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\FSAI.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+        "projectUniqueName": "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\FSAI.fsproj",
         "projectName": "FSAI",
-        "projectPath": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj",
-        "packagesPath": "C:\\Users\\Carl\\.nuget\\packages\\",
-        "outputPath": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\obj\\",
+        "projectPath": "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+        "packagesPath": "C:\\Users\\Jonthe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Carl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jonthe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,7 +46,7 @@
               "generatePathProperty": true
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
