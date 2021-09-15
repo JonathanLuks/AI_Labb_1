@@ -23,7 +23,7 @@ module Minimax =
         else
             y
 
-    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer getValidMoves MakeMove = 
+    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer getValidMoves MakeMove OtherTile = 
         //if depth = 0 then
             //eval(board)
         // There is not int.MaxValue/MinValue in F# so we'll have to do it manually.
@@ -41,9 +41,11 @@ module Minimax =
             for move in validMoves do
                 let childBoard:byte[,] = board
                 MakeMove childBoard move tile
+
                 let newDepth = depth - 1
                 let newIsMaxPlayer = not isMaxPlayer
-                let nodeScore = miniMaxAlphaBeta childBoard newDepth a b tile newIsMaxPlayer getValidMoves MakeMove
+                let newTile = OtherTile tile
+                let nodeScore = miniMaxAlphaBeta childBoard newDepth a b newTile newIsMaxPlayer getValidMoves MakeMove
         
                 let newBestScore =
                     if isMaxPlayer then
@@ -52,7 +54,7 @@ module Minimax =
                     else
                         let newB = Min bestScore b
                         Min bestScore nodeScore
-
+                
         // else return miniMaxAlphaBeta board depth a b OtherTile !isMaxPlayer
 
         bestScore
