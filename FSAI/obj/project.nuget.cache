@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Bj2tR5HD7CmFj1ZOnSqCKeZXvZeiHRAg9jSqzsknQQj95HNcvQ0ehjh+qn5Ed8ZuhGvoWTjkaQBWq2fq/QD71g==",
+  "dgSpecHash": "jbrcGcocUEAVjzsBcIvo1lZsMJk1KRi7shjRgiGD8K7eS8PJzdZhCC3hvUZxMK6tr446hDIp6bT0CoetParjuQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jonthe\\source\\repos\\reversi-master\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+  "projectFilePath": "D:\\DIS\\AI-Programmering\\AI_Labb_1\\FSAI\\FSAI.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Jonthe\\.nuget\\packages\\fsharp.core\\5.0.2\\fsharp.core.5.0.2.nupkg.sha512"
+    "C:\\Users\\Carl\\.nuget\\packages\\fsharp.core\\5.0.2\\fsharp.core.5.0.2.nupkg.sha512"
   ],
   "logs": []
 }

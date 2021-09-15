@@ -1,4 +1,5 @@
 ﻿namespace FSAI
+open System
 
 module Minimax =
     let printHello message = 
@@ -22,10 +23,9 @@ module Minimax =
         else
             y
 
-    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer = 
+    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer getValidMoves MakeMove = 
         //if depth = 0 then
             //eval(board)
-
         // There is not int.MaxValue/MinValue in F# so we'll have to do it manually.
         let maxValue = 2147483647
         let minValue = -2147483648
@@ -36,27 +36,24 @@ module Minimax =
             else
                 maxValue
 
-        // todo: Get list of Valid Moves
-        // if (validMoves.Count > 0)
-
-        let childBoard:byte[,] = board
-        // todo: MakeMove, OtherTile
-        let newDepth = depth - 1
-        let newIsMaxPlayer = not isMaxPlayer
-        let nodeScore = miniMaxAlphaBeta childBoard newDepth a b tile newIsMaxPlayer
+        let validMoves = getValidMoves board tile
+        if validMoves.Count > 0 then
+            for move in validMoves do
+                let childBoard:byte[,] = board
+                MakeMove childBoard move tile
+                let newDepth = depth - 1
+                let newIsMaxPlayer = not isMaxPlayer
+                let nodeScore = miniMaxAlphaBeta childBoard newDepth a b tile newIsMaxPlayer getValidMoves MakeMove
         
+                let newBestScore =
+                    if isMaxPlayer then
+                        let newA = Max bestScore a
+                        Max bestScore nodeScore
+                    else
+                        let newB = Min bestScore b
+                        Min bestScore nodeScore
 
-        let newBestScore =
-            if isMaxPlayer then
-                let newA = Max bestScore a
-                Max bestScore nodeScore
-            else
-                let newB = Min bestScore b
-                Min bestScore nodeScore
-
-        
         // else return miniMaxAlphaBeta board depth a b OtherTile !isMaxPlayer
-
 
         bestScore
 
