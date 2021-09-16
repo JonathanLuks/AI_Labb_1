@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.FSharp.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -249,6 +250,15 @@ namespace Reversi
             }
             return validMoves;
         }
+
+        private static List<Tuple<int, int>> ApplyGetValidMoves(byte[,] input1, byte input2)
+        {
+            var moves = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, List<Tuple<int, int>>>(t => GetValidMoves(t.Item1, t.Item2));
+            var func = FuncConvert.FuncFromTupled(moves);
+            return FSAI.Minimax.applyOperation(func, input1, input2);
+        }
+
+
 
         public static void MakeMove(byte[,] board, Tuple<int, int> move, byte tile)
         {

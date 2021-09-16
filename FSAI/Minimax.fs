@@ -22,11 +22,16 @@ module Minimax =
         else
             y
 
+    let applyOperation operation (board:byte[,]) (tile:byte) =
+        let result:ResizeArray<int * int> = operation board tile
+        result
+
+
     let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer = 
         //if depth = 0 then
             //eval(board)
 
-        // There is not int.MaxValue/MinValue in F# so we'll have to do it manually.
+        // There is no int.MaxValue/MinValue in F# so we'll have to do it manually.
         let maxValue = 2147483647
         let minValue = -2147483648
 
