@@ -73,6 +73,12 @@ namespace Reversi
             throw new ArgumentException("tile must have value 1 or 2.");
         }
 
+        private static byte ApplyOtherTile(byte input)
+        {
+            var TileFunc = FuncConvert.ToFSharpFunc<byte, byte>(OtherTile);
+            return FSAI.Minimax.applyOtherTile(TileFunc, input);
+        }
+
         public static string ValueAsString(byte tile)
         {
             if (tile == Empty)
@@ -255,7 +261,7 @@ namespace Reversi
         {
             var moves = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, List<Tuple<int, int>>>(t => GetValidMoves(t.Item1, t.Item2));
             var func = FuncConvert.FuncFromTupled(moves);
-            return FSAI.Minimax.applyOperation(func, input1, input2);
+            return FSAI.Minimax.applyGetValidMoves(func, input1, input2);
         }
 
 
@@ -272,6 +278,13 @@ namespace Reversi
                 board[move.Item1, move.Item2] = tile;
             }
         }
+
+        private static void ApplyMakeMove(byte[,] input1, Tuple<int, int> input2, byte input3)
+        {
+            var WrappedFunc = 
+        }
+
+
 
         public static int CountCorners(byte[,] board, byte tile)
         {

@@ -22,10 +22,13 @@ module Minimax =
         else
             y
 
-    let applyOperation operation (board:byte[,]) (tile:byte) =
+    let applyGetValidMoves operation (board:byte[,]) (tile:byte) =
         let result:ResizeArray<int * int> = operation board tile
         result
 
+    let applyOtherTile operation (tile:byte) =
+        let result:byte = operation tile
+        result
 
     let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer = 
         //if depth = 0 then
