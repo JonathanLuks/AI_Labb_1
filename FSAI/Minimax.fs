@@ -22,12 +22,17 @@ module Minimax =
         else
             y
 
-    let applyGetValidMoves operation (board:byte[,]) (tile:byte) =
+    let applyGetValidMoves operation (board: byte[,]) (tile: byte) =
         let result:ResizeArray<int * int> = operation board tile
+        let FS_List = Seq.toList result
+        FS_List
+
+    let applyOtherTile operation (tile: byte) =
+        let result:byte = operation tile
         result
 
-    let applyOtherTile operation (tile:byte) =
-        let result:byte = operation tile
+    let applyMakeMove operation (board: byte[,]) (move: int * int) (tile: byte) =
+        let result = operation board move tile
         result
 
     let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer = 
@@ -44,6 +49,7 @@ module Minimax =
             else
                 maxValue
 
+        let validMoves = applyGetValidMoves
         // todo: Get list of Valid Moves
         // if (validMoves.Count > 0)
 

@@ -75,8 +75,8 @@ namespace Reversi
 
         private static byte ApplyOtherTile(byte input)
         {
-            var TileFunc = FuncConvert.ToFSharpFunc<byte, byte>(OtherTile);
-            return FSAI.Minimax.applyOtherTile(TileFunc, input);
+            var func = FuncConvert.ToFSharpFunc<byte, byte>(OtherTile);
+            return FSAI.Minimax.applyOtherTile(func, input);
         }
 
         public static string ValueAsString(byte tile)
@@ -259,8 +259,8 @@ namespace Reversi
 
         private static List<Tuple<int, int>> ApplyGetValidMoves(byte[,] input1, byte input2)
         {
-            var moves = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, List<Tuple<int, int>>>(t => GetValidMoves(t.Item1, t.Item2));
-            var func = FuncConvert.FuncFromTupled(moves);
+            var wrappedFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, List<Tuple<int, int>>>(t => GetValidMoves(t.Item1, t.Item2));
+            var func = FuncConvert.FuncFromTupled(wrappedFunc);
             return FSAI.Minimax.applyGetValidMoves(func, input1, input2);
         }
 
@@ -281,7 +281,9 @@ namespace Reversi
 
         private static void ApplyMakeMove(byte[,] input1, Tuple<int, int> input2, byte input3)
         {
-            var WrappedFunc = 
+            var wrappedFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], Tuple<int, int>, byte>>(t => MakeMove(t.Item1, t.Item2, t.Item3));
+            var func = FuncConvert.FuncFromTupled(wrappedFunc);
+            FSAI.Minimax.applyMakeMove(func, input1, input2.Item1, input2.Item2, input3);
         }
 
 
