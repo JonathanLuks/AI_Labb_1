@@ -33,8 +33,8 @@ module Minimax =
         let mutable evaluation = 0  
         let blackScore = getScore board Black 
         let whiteScore = getScore board White
-        let blackMobility:List<Tuple<int, int>> = getValidMoves board Black 
-        let whiteMobility:List<Tuple<int, int>> = getValidMoves board White
+        let blackMobility:ResizeArray<Tuple<int, int>> = getValidMoves board Black 
+        let whiteMobility:ResizeArray<Tuple<int, int>> = getValidMoves board White
         
         let stopVariable =
             if blackScore = 0 then
@@ -47,7 +47,7 @@ module Minimax =
         if stopVariable < 0 || stopVariable > 0 then
             stopVariable
         else
-            if (blackScore + whiteScore) = 64 || (blackMobility.Length + whiteMobility.Length) = 0 then
+            if (blackScore + whiteScore) = 64 || (blackMobility.Count + whiteMobility.Count) = 0 then
                 if Black < byte whiteScore then
                     (-100000 - whiteScore + blackScore)
                 else if blackScore > whiteScore then
@@ -58,7 +58,7 @@ module Minimax =
                 if (blackScore + whiteScore) > 55 then
                     (blackScore - whiteScore)
                 else
-                    evaluation <- (blackScore - whiteScore) + ((blackMobility.Length - whiteMobility.Length)*10) + (countCorners board Black - countCorners board White)
+                    evaluation <- (blackScore - whiteScore) + ((blackMobility.Count - whiteMobility.Count)*10) + (countCorners board Black - countCorners board White)
 
                     evaluation
 
@@ -74,27 +74,56 @@ module Minimax =
         else
             y
 
-    let rec Loop validMoves bestscore isMaxPlayer board makeMove= 
+    let getWinner (board:byte[,]) getValidMoves = 
+        let blackScore = getScore board 2uy
+        let whiteScore = getScore board 1uy
+        let blackMoves:ResizeArray<Tuple<int, int>> = getValidMoves board Black
+        let whiteMoves:ResizeArray<Tuple<int, int>> = getValidMoves board White
+
+
+        if blackScore = 0 || whiteScore = 0 || blackScore + whiteScore = 64 then
+            if blackScore > whiteScore then
+                Black
+            elif whiteScore > blackScore then
+                White
+            else
+                Tie
+        else
+            Empty
+
+    let rec Loop validMoves bestScore isMaxPlayer a b tile board depth miniMaxAlphaBeta getValidMoves makeMove otherTile= 
         match validMoves with
         | x::xs ->
             let childBoard:byte[,] = board
             makeMove childBoard x tile
+
             let newDepth = depth - 1
             let newIsMaxPlayer = not isMaxPlayer
             let newTile = otherTile tile
             let nodeScore = miniMaxAlphaBeta childBoard newDepth a b newTile newIsMaxPlayer getValidMoves makeMove otherTile
         
             if isMaxPlayer then
-                bestScore = Max bestScore nodeScore
-            else
-                bestScore = Min bestScore nodeScore
+                let newBestScore = Max bestScore nodeScore
+                let newA = max newBestScore a
 
-            Loop xs bestScore
-        | [] -> bestScore
+                if newA > b then
+                    newBestScore
+                else
+                    Loop xs newBestScore isMaxPlayer newA b tile board depth miniMaxAlphaBeta getValidMoves makeMove otherTile
+            else
+                let newBestScore = Min bestScore nodeScore
+                let newB = Min newBestScore b
+
+                if newB < a then
+                    newBestScore
+                else
+                    Loop xs newBestScore isMaxPlayer a newB tile board depth miniMaxAlphaBeta getValidMoves makeMove otherTile
+        | [] -> 
+            bestScore
 
     let rec miniMaxAlphaBeta (board:byte[,]) depth a b (tile:byte) isMaxPlayer getValidMoves makeMove otherTile = 
-        let validMoves:List<Tuple<int, int>> = getValidMoves board tile
-        if depth = 0 then
+        let validMoves:ResizeArray<Tuple<int, int>> = getValidMoves board tile
+        if depth = 0 || (getWinner board getValidMoves) <> Empty then
             eval board getValidMoves
         else
             // There is no int.MaxValue/MinValue in F# so we'll have to do it manually.
@@ -104,11 +133,10 @@ module Minimax =
                 else
                     2147483647
 
-            if validMoves.Length > 0 then
-                Loop validMoves bestScore isMaxPlayer board makeMove
+            if validMoves.Count > 0 then
+                Loop (Seq.toList validMoves)  bestScore isMaxPlayer a b tile board depth miniMaxAlphaBeta getValidMoves makeMove otherTile
+                
             else
                 let newTile = otherTile tile
                 let newIsMaxPlayer = not isMaxPlayer
-                bestScore = miniMaxAlphaBeta board depth a b newTile isMaxPlayer getValidMoves makeMove otherTile
-
-            bestScore
+                miniMaxAlphaBeta board depth a b newTile isMaxPlayer getValidMoves makeMove otherTile

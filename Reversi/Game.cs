@@ -316,6 +316,30 @@ namespace Reversi
             return evaluation;
         }
 
+        private static int ApplyFunctions(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
+        {
+            var wrappedGetValidFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, List<Tuple<int, int>>>(t => GetValidMoves(t.Item1, t.Item2));
+            var getValidFunc = FuncConvert.FuncFromTupled(wrappedGetValidFunc);
+
+            var wrappedMakeMoveFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], Tuple<int, int>, byte>>(t => MakeMove(t.Item1, t.Item2, t.Item3));
+            var makeMoveFunc = FuncConvert.FuncFromTupled(wrappedMakeMoveFunc);
+
+            var otherTileFunc = FuncConvert.ToFSharpFunc<byte, byte>(OtherTile);
+
+            var wrappedGetScoreFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, int>(t => GetScore(t.Item1, t.Item2));
+            var getScoreFunc = FuncConvert.FuncFromTupled(wrappedGetScoreFunc);
+
+            return FSAI.Minimax.miniMaxAlphaBeta(board,
+                                                 depth,
+                                                 a,
+                                                 b,
+                                                 tile,
+                                                 isMaxPlayer,
+                                                 getValidFunc,    
+                                                 makeMoveFunc,
+                                                 otherTileFunc);
+        }
+
         public static int MinimaxAlphaBeta(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
         {
             // The heart of our AI. Minimax algorithm with alpha-beta pruning to speed up computation.
@@ -390,7 +414,7 @@ namespace Reversi
                     int nodeScore;
                     if (tile == Black)
                     {
-                        nodeScore = MinimaxAlphaBeta(childBoard, depth - 1, int.MinValue, int.MaxValue, OtherTile(tile), false);
+                        nodeScore = ApplyFunctions(childBoard, depth - 1, int.MinValue, int.MaxValue, OtherTile(tile), false);
                         if (nodeScore > bestScore)
                         {
                             bestScore = nodeScore;
@@ -399,7 +423,7 @@ namespace Reversi
                     }
                     else
                     {
-                        nodeScore = MinimaxAlphaBeta(childBoard, depth - 1, int.MinValue, int.MaxValue, OtherTile(tile), true);
+                        nodeScore = ApplyFunctions(childBoard, depth - 1, int.MinValue, int.MaxValue, OtherTile(tile), true);
                         if (nodeScore < bestScore)
                         {
                             bestScore = nodeScore;
