@@ -329,6 +329,8 @@ namespace Reversi
             var wrappedGetScoreFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, int>(t => GetScore(t.Item1, t.Item2));
             var getScoreFunc = FuncConvert.FuncFromTupled(wrappedGetScoreFunc);
 
+            var getWinnerFunc = FuncConvert.ToFSharpFunc<byte[,], byte>(GetWinner);
+
             return FSAI.Minimax.miniMaxAlphaBeta(board,
                                                  depth,
                                                  a,
@@ -337,10 +339,11 @@ namespace Reversi
                                                  isMaxPlayer,
                                                  getValidFunc,    
                                                  makeMoveFunc,
-                                                 otherTileFunc);
+                                                 otherTileFunc,
+                                                 getWinnerFunc);
         }
 
-        public static int MinimaxAlphaBeta(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
+        /*public static int MinimaxAlphaBeta(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
         {
             // The heart of our AI. Minimax algorithm with alpha-beta pruning to speed up computation.
             // Higher search depths = greater difficulty.
@@ -380,7 +383,7 @@ namespace Reversi
                 return MinimaxAlphaBeta(board, depth, a, b, OtherTile(tile), !isMaxPlayer);
             }
             return bestScore;
-        }
+        }*/
 
         public static Tuple<int, int> GetAIMove(byte[,] board, int depth, byte tile)
         {
