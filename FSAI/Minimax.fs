@@ -50,24 +50,37 @@ module Minimax =
                 maxValue
 
         let validMoves = getValidMoves board tile
-        // todo: Get list of Valid Moves
-        // if (validMoves.Count > 0)
 
-        let childBoard:byte[,] = board
-        // todo: MakeMove, OtherTile
-        let newDepth = depth - 1
-        let newIsMaxPlayer = not isMaxPlayer
-        let nodeScore = miniMaxAlphaBeta childBoard newDepth a b tile newIsMaxPlayer getValidMoves otherTile makeMove
-        
-
-        let newBestScore =
-            if isMaxPlayer then
-                let newA = Max bestScore a
-                Max bestScore nodeScore
+        let contains =
+            if List.isEmpty validMoves then
+                false
             else
-                let newB = Min bestScore b
-                Min bestScore nodeScore
+                true
 
+        if contains = true then
+            //let rec loopValid = 
+            // todo: Get list of Valid Moves
+            // if (validMoves.Count > 0)
+
+            let childBoard:byte[,] = board
+            //makeMove childBoard move tile
+            // todo: MakeMove, OtherTile
+            let newDepth = depth - 1
+            let newIsMaxPlayer = not isMaxPlayer
+            let newTile = otherTile tile
+            let nodeScore = miniMaxAlphaBeta childBoard newDepth a b newTile newIsMaxPlayer getValidMoves otherTile makeMove
+
+            let newBestScore =
+                if isMaxPlayer then
+                    let newA = Max bestScore a
+                    Max bestScore nodeScore
+                else
+                    let newB = Min bestScore b
+                    Min bestScore nodeScore
+        else
+            let newTile = otherTile tile
+            let newIsMaxPlayer = not isMaxPlayer
+            miniMaxAlphaBeta board depth a b newTile newIsMaxPlayer getValidMoves otherTile makeMove
         
         // else return miniMaxAlphaBeta board depth a b OtherTile !isMaxPlayer
 
