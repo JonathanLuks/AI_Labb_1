@@ -306,7 +306,8 @@ namespace Reversi
                                                  isMaxPlayer,
                                                  getValidFunc,
                                                  otherTileFunc,
-                                                 makeMoveFunc);
+                                                 makeMoveFunc,
+                                                 getScoreFunc);
         }
 
 
