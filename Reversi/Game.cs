@@ -298,6 +298,10 @@ namespace Reversi
             var wrappedGetScoreFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, int>(t => GetScore(t.Item1, t.Item2));
             var getScoreFunc = FuncConvert.FuncFromTupled(wrappedGetScoreFunc);
 
+            var getWinnerFunc = FuncConvert.ToFSharpFunc<byte[,], byte>(GetWinner);
+
+            var evalFunc = FuncConvert.ToFSharpFunc<byte[,], int>(Evaluation);
+
             return FSAI.Minimax.miniMaxAlphaBeta(board,
                                                  depth,
                                                  a,
