@@ -324,8 +324,6 @@ namespace Reversi
             var wrappedMakeMoveFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], Tuple<int, int>, byte>>(t => MakeMove(t.Item1, t.Item2, t.Item3));
             var makeMoveFunc = FuncConvert.FuncFromTupled(wrappedMakeMoveFunc);
 
-            var otherTileFunc = FuncConvert.ToFSharpFunc<byte, byte>(OtherTile);
-
             var wrappedGetScoreFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, int>(t => GetScore(t.Item1, t.Item2));
             var getScoreFunc = FuncConvert.FuncFromTupled(wrappedGetScoreFunc);
 
@@ -339,7 +337,6 @@ namespace Reversi
                                                  isMaxPlayer,
                                                  getValidFunc,    
                                                  makeMoveFunc,
-                                                 otherTileFunc,
                                                  getWinnerFunc);
         }
 
