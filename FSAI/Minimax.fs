@@ -7,6 +7,12 @@ module Minimax =
     type Class1() = 
         member this.X = "F#"
 
+    let Tie = 4uy
+    let Valid = 3uy
+    let Black = 2uy
+    let White = 1uy
+    let Empty = 0uy
+
     let eval board = 
         board
 
@@ -21,6 +27,23 @@ module Minimax =
             x
         else
             y
+                
+    let getWinner (board:byte[,]) getScore getValidMoves = 
+        let blackScore = getScore board 2
+        let whiteScore = getScore board 1
+
+        if blackScore = 0 || whiteScore = 0 || blackScore + whiteScore = 64 || 
+        (getValidMoves board Black) + (getValidMoves board White) = 0 then
+            if blackScore > whiteScore then
+                Black
+            elif whiteScore > blackScore then
+                White
+            else
+                Tie
+        else
+            Empty
+
+
 
     let applyGetValidMoves operation (board: byte[,]) (tile: byte) =
         let result:ResizeArray<int * int> = operation board tile
@@ -35,7 +58,7 @@ module Minimax =
         let result = operation board move tile
         result
 
-    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer getValidMoves otherTile makeMove = 
+    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer getValidMoves otherTile makeMove getScore = 
         //if depth = 0 then
             //eval(board)
 
@@ -55,11 +78,11 @@ module Minimax =
             if List.isEmpty validMoves then
                 let newTile = otherTile tile
                 let newIsMaxPlayer = not isMaxPlayer
-                miniMaxAlphaBeta board depth a b newTile newIsMaxPlayer getValidMoves otherTile makeMove
+                miniMaxAlphaBeta board depth a b newTile newIsMaxPlayer getValidMoves otherTile makeMove getScore
         
             else
                 let rec loop n =
-                    if b => a then
+                    if b >= a then
                     
                 //for move in validMoves do
                 
@@ -68,7 +91,7 @@ module Minimax =
                         let newDepth = depth - 1
                         let newIsMaxPlayer = not isMaxPlayer
                         let newTile = otherTile tile
-                        let nodeScore = miniMaxAlphaBeta childBoard newDepth a b newTile newIsMaxPlayer getValidMoves otherTile makeMove
+                        let nodeScore = miniMaxAlphaBeta childBoard newDepth a b newTile newIsMaxPlayer getValidMoves otherTile makeMove getScore
 
                         let newBestScore =
                             if isMaxPlayer then

@@ -295,7 +295,10 @@ namespace Reversi
 
             var otherTileFunc = FuncConvert.ToFSharpFunc<byte, byte>(OtherTile);
 
-            FSAI.Minimax.miniMaxAlphaBeta(board, depth, a, b, tile, isMaxPlayer, getValidFunc, otherTileFunc, makeMoveFunc);
+            var wrappedGetScoreFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, int>(t => GetScore(t.Item1, t.Item2));
+            var getScoreFunc = FuncConvert.FuncFromTupled(wrappedGetScoreFunc);
+
+            FSAI.Minimax.miniMaxAlphaBeta(board, depth, a, b, tile, isMaxPlayer, getValidFunc, otherTileFunc, makeMoveFunc, getScoreFunc);
         }
 
 
