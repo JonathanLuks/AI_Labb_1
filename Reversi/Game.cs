@@ -285,7 +285,7 @@ namespace Reversi
             FSAI.Minimax.applyMakeMove(func, input1, input2.Item1, input2.Item2, input3);
         }*/
 
-        private static void ApplyFunctions(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
+        private static int ApplyFunctions(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
         {
             var wrappedGetValidFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, List<Tuple<int, int>>>(t => GetValidMoves(t.Item1, t.Item2));
             var getValidFunc = FuncConvert.FuncFromTupled(wrappedGetValidFunc);
@@ -298,7 +298,15 @@ namespace Reversi
             var wrappedGetScoreFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, int>(t => GetScore(t.Item1, t.Item2));
             var getScoreFunc = FuncConvert.FuncFromTupled(wrappedGetScoreFunc);
 
-            FSAI.Minimax.miniMaxAlphaBeta(board, depth, a, b, tile, isMaxPlayer, getValidFunc, otherTileFunc, makeMoveFunc, getScoreFunc);
+            return FSAI.Minimax.miniMaxAlphaBeta(board,
+                                                 depth,
+                                                 a,
+                                                 b,
+                                                 tile,
+                                                 isMaxPlayer,
+                                                 getValidFunc,
+                                                 otherTileFunc,
+                                                 makeMoveFunc);
         }
 
 
