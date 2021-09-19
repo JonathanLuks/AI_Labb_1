@@ -72,12 +72,12 @@ namespace Reversi
             }
             throw new ArgumentException("tile must have value 1 or 2.");
         }
-
-        private static byte ApplyOtherTile(byte input)
+        
+        /*private static byte ApplyOtherTile(byte input)
         {
             var func = FuncConvert.ToFSharpFunc<byte, byte>(OtherTile);
             return FSAI.Minimax.applyOtherTile(func, input);
-        }
+        }*/
 
         public static string ValueAsString(byte tile)
         {
@@ -257,13 +257,12 @@ namespace Reversi
             return validMoves;
         }
 
-        private static List<Tuple<int, int>> ApplyGetValidMoves(byte[,] input1, byte input2)
+        /*private static List<Tuple<int, int>> ApplyGetValidMoves(byte[,] input1, byte input2)
         {
             var wrappedFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, List<Tuple<int, int>>>(t => GetValidMoves(t.Item1, t.Item2));
             var func = FuncConvert.FuncFromTupled(wrappedFunc);
             return FSAI.Minimax.applyGetValidMoves(func, input1, input2);
-        }
-
+        }*/
 
 
         public static void MakeMove(byte[,] board, Tuple<int, int> move, byte tile)
@@ -279,13 +278,25 @@ namespace Reversi
             }
         }
 
-        private static void ApplyMakeMove(byte[,] input1, Tuple<int, int> input2, byte input3)
+        /*private static void ApplyMakeMove(byte[,] input1, Tuple<int, int> input2, byte input3)
         {
             var wrappedFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], Tuple<int, int>, byte>>(t => MakeMove(t.Item1, t.Item2, t.Item3));
             var func = FuncConvert.FuncFromTupled(wrappedFunc);
             FSAI.Minimax.applyMakeMove(func, input1, input2.Item1, input2.Item2, input3);
-        }
+        }*/
 
+        private static void ApplyFunctions(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
+        {
+            var wrappedGetValidFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], byte>, List<Tuple<int, int>>>(t => GetValidMoves(t.Item1, t.Item2));
+            var getValidFunc = FuncConvert.FuncFromTupled(wrappedGetValidFunc);
+
+            var wrappedMakeMoveFunc = FuncConvert.ToFSharpFunc<Tuple<byte[,], Tuple<int, int>, byte>>(t => MakeMove(t.Item1, t.Item2, t.Item3));
+            var makeMoveFunc = FuncConvert.FuncFromTupled(wrappedMakeMoveFunc);
+
+            var otherTileFunc = FuncConvert.ToFSharpFunc<byte, byte>(OtherTile);
+
+            FSAI.Minimax.miniMaxAlphaBeta(board, depth, a, b, tile, isMaxPlayer, getValidFunc, otherTileFunc, makeMoveFunc);
+        }
 
 
         public static int CountCorners(byte[,] board, byte tile)

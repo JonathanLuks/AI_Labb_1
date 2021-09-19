@@ -35,7 +35,7 @@ module Minimax =
         let result = operation board move tile
         result
 
-    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer = 
+    let rec miniMaxAlphaBeta board depth a b tile isMaxPlayer getValidMoves otherTile makeMove = 
         //if depth = 0 then
             //eval(board)
 
@@ -49,7 +49,7 @@ module Minimax =
             else
                 maxValue
 
-        let validMoves = applyGetValidMoves
+        let validMoves = getValidMoves board tile
         // todo: Get list of Valid Moves
         // if (validMoves.Count > 0)
 
@@ -57,7 +57,7 @@ module Minimax =
         // todo: MakeMove, OtherTile
         let newDepth = depth - 1
         let newIsMaxPlayer = not isMaxPlayer
-        let nodeScore = miniMaxAlphaBeta childBoard newDepth a b tile newIsMaxPlayer
+        let nodeScore = miniMaxAlphaBeta childBoard newDepth a b tile newIsMaxPlayer getValidMoves otherTile makeMove
         
 
         let newBestScore =
