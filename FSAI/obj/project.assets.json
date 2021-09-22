@@ -98,25 +98,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Carl\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Carl\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DIS\\AI-Programmering\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+      "projectUniqueName": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj",
       "projectName": "FSAI",
-      "projectPath": "D:\\DIS\\AI-Programmering\\AI_Labb_1\\FSAI\\FSAI.fsproj",
+      "projectPath": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\FSAI.fsproj",
       "packagesPath": "C:\\Users\\Carl\\.nuget\\packages\\",
-      "outputPath": "D:\\DIS\\AI-Programmering\\AI_Labb_1\\FSAI\\obj\\",
+      "outputPath": "D:\\JU-DIS\\NFK\\AI_Labb_1\\FSAI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
         "C:\\Users\\Carl\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net472"
@@ -142,7 +137,7 @@
             "generatePathProperty": true
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

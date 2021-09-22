@@ -340,7 +340,7 @@ namespace Reversi
                                                  getWinnerFunc);
         }
 
-        /*public static int MinimaxAlphaBeta(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
+       /* public static int MinimaxAlphaBeta(byte[,] board, int depth, int a, int b, byte tile, bool isMaxPlayer)
         {
             // The heart of our AI. Minimax algorithm with alpha-beta pruning to speed up computation.
             // Higher search depths = greater difficulty.
